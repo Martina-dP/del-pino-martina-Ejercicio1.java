@@ -55,7 +55,25 @@ public class Main {
                    break;
                }
                case 2 : {
-                   System.out.println("poner bomba");
+                   System.out.print("Coordenada x: ");
+                    int x = input.nextInt();
+
+                   System.out.print("Coordenada y : ");
+                   int y = input.nextInt();
+
+                   if (x >= 0 && x < rows && y >= 0 && y < columns) {
+                       int suma = 0;
+
+                       for (int i=0; i < columns; i++ ) {
+                           suma = suma + gameBoard[x][i];
+                       }
+                       for (int m = 0; m < rows; m++) {
+                           if (m != x) suma = suma + gameBoard[m][y];
+                       }
+
+                   } else {
+                       System.out.print("out");
+                   }
                    break;
                }
                default: {
@@ -63,7 +81,6 @@ public class Main {
                    break;
                }
            }
-           input.close();
        }
 
     }
