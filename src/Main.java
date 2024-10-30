@@ -37,10 +37,10 @@ public class Main {
         boolean end = false;
 
        while (true) {
-           System.out.print("seleccione una opcion: ");
-           System.out.print("0 = salir ");
-           System.out.print("1 = mostrar matriz ");
-           System.out.print("2 = poner bomba ");
+           System.out.println("seleccione una opcion: ");
+           System.out.println("0 = salir ");
+           System.out.println("1 = mostrar matriz ");
+           System.out.println("2 = poner bomba ");
 
            opcion = input.nextInt();
 
@@ -51,6 +51,7 @@ public class Main {
                    return;
                }
                case 1 : {
+                   System.out.println(Arrays.deepToString(gameBoard));
                    System.out.println("mostrar matriz");
                    break;
                }
@@ -70,10 +71,37 @@ public class Main {
                        for (int m = 0; m < rows; m++) {
                            if (m != x) suma = suma + gameBoard[m][y];
                        }
+                       System.out.println("Valor de explocion: " + suma);
 
+                       for (int i=0; i < columns; i++ ) {
+                           gameBoard[x][i] = 0;
+                       }
+                       for (int m = 0; m < rows; m++) {
+                           gameBoard[m][y] = 0;
+                       }
+
+                       System.out.println(Arrays.deepToString(gameBoard));
                    } else {
-                       System.out.print("out");
+                       System.out.println("Numero no valido");
+                       end = true;
                    }
+
+                   boolean isZero = true;
+
+                   for (int p = 0; p < rows; p++) {
+                       for (int s = 0; s < columns; s++) {
+                           if (gameBoard[p][s] != 0) {
+                               isZero = false;
+                               break;
+                           }
+                       }
+                   }
+
+                   if (isZero){
+                       System.out.println("fin");
+                       return;
+                   }
+
                    break;
                }
                default: {
